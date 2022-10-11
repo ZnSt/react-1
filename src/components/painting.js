@@ -5,7 +5,7 @@ export default function Painting({
   imageUrl = defaultImg,
   title,
   profileUrl,
-  authorName = "No name",
+  authorName = "Неизвестно",
   price,
   quantity,
 }) {
@@ -24,10 +24,10 @@ export default function Painting({
 }
 
 Painting.propTypes = {
-  imageUrl: PropTypes.string,
-  title: PropTypes.string,
-  profileUrl: PropTypes.string,
-  authorName: PropTypes.string,
-  price: PropTypes.number,
-  quantity: PropTypes.number,
+  imageUrl: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  profileUrl: PropTypes.string.isRequired,
+  authorName: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  quantity: PropTypes.number.isRequired,
 };
