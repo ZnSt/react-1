@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import css from './Event.module.css';
+import { Card, EventName, Info, Chip } from './Event.styled';
 import {
   FaMapMarkerAlt,
   FaUserAlt,
@@ -12,26 +12,26 @@ export function Event({ name, location, speaker, type, start, end }) {
   const formatedStart = formatEventStart(start);
   const duration = formatEventDuration(start, end);
   return (
-    <div className={css.event}>
-      <h2 className={css.title}>{name}</h2>
-      <p className={css.info}>
-        <FaMapMarkerAlt className={css.icon} />
+    <Card>
+      <EventName>{name}</EventName>
+      <Info>
+        <FaMapMarkerAlt />
         {location}
-      </p>
-      <p className={css.info}>
-        <FaUserAlt className={css.icon} />
+      </Info>
+      <Info>
+        <FaUserAlt />
         {speaker}
-      </p>
-      <p className={css.info}>
-        <FaCalendarAlt className={css.icon} />
+      </Info>
+      <Info>
+        <FaCalendarAlt />
         {formatedStart}
-      </p>
-      <p className={css.info}>
-        <FaClock className={css.icon} />
+      </Info>
+      <Info>
+        <FaClock />
         {duration}
-      </p>
-      <span className={`${css.chip} ${css[type]}`}>{type}</span>
-    </div>
+      </Info>
+      <Chip eventType={type}>{type}</Chip>
+    </Card>
   );
 }
 
