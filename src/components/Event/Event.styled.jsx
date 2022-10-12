@@ -5,6 +5,13 @@ export const Card = styled.div`
   border: ${props => `2px dashed ${props.theme.colors.black}`};
   padding: 8px;
   border-radius: 4px;
+  background-color: ${props => `${props.theme.colors.backgCard}`}
+
+  &:hover,
+  &:focus {
+    background-color: ${props => `${props.theme.colors.colorCards}`};
+    color: ${props => `${props.theme.colors.ultraViolet}`};
+  }
 `;
 
 export const EventName = styled.h2`
@@ -26,6 +33,10 @@ export const Info = styled.p`
   line-height: 24px;
   font-weight: 400;
   letter-spacing: 0.25px;
+
+  &:hover, &:focus {
+      color: ${props => `${props.theme.colors.ultraViolet}`}
+  }
 
   svg {
     display: block

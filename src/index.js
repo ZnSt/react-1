@@ -14,6 +14,9 @@ const theme = {
     blue: '#2196f3',
     primaryText: '#212121',
     secondaryText: '#757575',
+    colorCards: '#ec9787',
+    ultraViolet: '#6b5b95',
+    backgCard: '#bc70a4',
   },
 };
 root.render(
