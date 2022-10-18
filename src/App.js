@@ -1,14 +1,6 @@
 import "./App.css";
-import paintings from "./painting.json";
-import PaintingList from "./components/PaintingList";
-import Sections from "./components/Sections";
+import { Counter } from "./components/Counter/Counter";
 
 export default function App() {
-  return (
-    <div>
-      <Sections title="Топ недели">
-        <PaintingList items={paintings} />
-      </Sections>
-    </div>
-  );
+  return <Counter initialValue={0} />;
 }
