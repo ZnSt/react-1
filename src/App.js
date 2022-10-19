@@ -17,7 +17,7 @@ import { ToDoList } from "./components/ToDoList/ToDoList";
 export class App extends Component {
   state = {
     todos: [
-      { id: "id-1", text: "Выучить основы реакт", completed: false },
+      { id: "id-1", text: "Выучить основы реакт", completed: true },
       { id: "id-2", text: "Разобраться с реакт роутер", completed: false },
       { id: "id-3", text: "Пережить редакс", completed: false },
     ],
@@ -31,14 +31,22 @@ export class App extends Component {
 
   render() {
     const { todos } = this.state;
+    const totalTodoCount = todos.length;
+    const compeletedTodos = todos.reduce((acc, todo) => (todo.completed ? acc + 1 : acc), 0);
     return (
-      // return <Counter initialValue={0} />;
+      <>
+        {/* return <Counter initialValue={0} />; */}
 
-      // return <Dropdown />;
+        {/* return <Dropdown />; */}
 
-      // return <ColorPicker options={colorPickerOptions} />;
+        {/* return <ColorPicker options={colorPickerOptions} />; */}
+        <div>
+          <p>Общее кол-во: {totalTodoCount}</p>
+          <p>Общее кол-во выполненых: {compeletedTodos}</p>
+        </div>
 
-      <ToDoList todos={todos} onDeleteTodo={this.deleteTodo} />
+        <ToDoList todos={todos} onDeleteTodo={this.deleteTodo} />
+      </>
     );
   }
 }
