@@ -1,14 +1,16 @@
 import "./App.css";
-import paintings from "./painting.json";
-import PaintingList from "./components/PaintingList";
-import Sections from "./components/Sections";
+import { Component } from "react";
+import { Form } from "./components/Form /Form";
 
-export default function App() {
-  return (
-    <div>
-      <Sections title="Топ недели">
-        <PaintingList items={paintings} />
-      </Sections>
-    </div>
-  );
+export class App extends Component {
+  formSubmitHandler = (data) => {
+    console.log(data);
+  };
+  render() {
+    return (
+      <div>
+        <Form onSubmit={this.formSubmitHandler} />
+      </div>
+    );
+  }
 }
