@@ -3,7 +3,8 @@ import "./App.css";
 // import { Dropdown } from "./components/Dropdown";
 // import { Counter } from "./components/Counter";
 // import { ColorPicker } from "./components/ColorPicker";
-import { ToDoList } from "./components/ToDoList/ToDoList";
+// import { ToDoList } from "./components/ToDoList/ToDoList";
+import { Form } from "./components/Form";
 
 // const colorPickerOptions = [
 //   { label: "red", color: "#F44336" },
@@ -16,60 +17,38 @@ import { ToDoList } from "./components/ToDoList/ToDoList";
 
 export class App extends Component {
   state = {
-    todos: [
-      { id: "id-1", text: "Выучить основы реакт", completed: true },
-      { id: "id-2", text: "Разобраться с реакт роутер", completed: false },
-      { id: "id-3", text: "Пережить редакс", completed: false },
-    ],
-
-    name: "",
-    tag: "",
+    // todos: [
+    //   { id: "id-1", text: "Выучить основы реакт", completed: true },
+    //   { id: "id-2", text: "Разобраться с реакт роутер", completed: false },
+    //   { id: "id-3", text: "Пережить редакс", completed: false },
+    // ],
   };
 
-  handleChange = (event) => {};
-
-  // handleNameChange = (event) => {
-
-  //   this.setState({ name: event.currentTarget.value });
-  // };
-
-  // handleTagChange = (event) => {
-  //   this.setState({ tag: event.currentTarget.value });
-  // };
-
-  deleteTodo = (todoId) => {
-    this.setState((prevState) => ({
-      todos: prevState.todos.filter((todo) => todo.id !== todoId),
-    }));
+  formSubmitHadler = (data) => {
+    console.log(data);
   };
+
+  // deleteTodo = (todoId) => {
+  //   this.setState((prevState) => ({
+  //     todos: prevState.todos.filter((todo) => todo.id !== todoId),
+  //   }));
+  // };
 
   render() {
-    const { todos } = this.state;
-    const totalTodoCount = todos.length;
-    const compeletedTodos = todos.reduce((acc, todo) => (todo.completed ? acc + 1 : acc), 0);
+    // const { todos } = this.state;
+    // const totalTodoCount = todos.length;
+    // const compeletedTodos = todos.reduce((acc, todo) => (todo.completed ? acc + 1 : acc), 0);
     return (
       <>
-        <form>
-          <label htmlFor="">
-            Name{" "}
-            <input type="text" name="name" value={this.state.name} onChange={this.handleChange} />
-          </label>
-          <label htmlFor="">
-            Nickname{" "}
-            <input type="text" name="tag" value={this.state.tag} onChange={this.handleChange} />
-          </label>
-        </form>
+        <Form onSubmit={this.formSubmitHadler} />
         {/* return <Counter initialValue={0} />; */}
-
         {/* return <Dropdown />; */}
-
         {/* return <ColorPicker options={colorPickerOptions} />; */}
-        <div>
+        {/* <div>
           <p>Общее кол-во: {totalTodoCount}</p>
           <p>Общее кол-во выполненых: {compeletedTodos}</p>
-        </div>
-
-        <ToDoList todos={todos} onDeleteTodo={this.deleteTodo} />
+        </div> */}
+        {/* <ToDoList todos={todos} onDeleteTodo={this.deleteTodo} /> */}
       </>
     );
   }
