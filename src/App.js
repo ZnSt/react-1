@@ -5,8 +5,12 @@ import shortid from "shortid";
 // import { Counter } from "./components/Counter";
 // import { ColorPicker } from "./components/ColorPicker";
 import { ToDoList } from "./components/ToDoList/ToDoList";
+import { Todo } from "./components/Todo";
 import { TodoEditor } from "./components/TodoEditor";
 import { Filter } from "./components/Filter";
+import { Modal } from "./components/Modal";
+import { Clock } from "./components/Clock";
+
 // const colorPickerOptions = [
 //   { label: "red", color: "#F44336" },
 //   { label: "green", color: "#4CAF50" },
@@ -27,7 +31,23 @@ export class App extends Component {
     // ],
 
     filter: "",
+    showModal: false,
   };
+
+  componentDidMount() {
+    const todos = localStorage.getItem("todos");
+    const parsedTodos = JSON.parse(todos);
+
+    if (parsedTodos) {
+      this.setState({ todos: parsedTodos });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.todos !== prevState.todos) {
+      localStorage.setItem("todos", JSON.stringify(this.state.todos));
+    }
+  }
 
   toggleCompleted = (todoId) => {
     this.setState(({ todos }) => ({
@@ -78,20 +98,14 @@ export class App extends Component {
     return todos.reduce((acc, todo) => (todo.completed ? acc + 1 : acc), 0);
   };
 
-  componentDidMount() {
-    const todos = localStorage.getItem("todos");
-    const parsedTodos = JSON.parse(todos);
-    this.setState({ todos: parsedTodos });
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.todos !== prevState.todos) {
-      localStorage.setItem("todos", JSON.stringify(this.state.todos));
-    }
-  }
+  toggleModal = () => {
+    this.setState(({ showModal }) => ({
+      showModal: !showModal,
+    }));
+  };
 
   render() {
-    const { todos } = this.state;
+    const { todos, showModal } = this.state;
 
     const totalTodoCount = todos.length;
     const compeletedTodos = this.calculateCompletedTodos();
@@ -115,6 +129,26 @@ export class App extends Component {
           onDeleteTodo={this.deleteTodo}
           onToggleCompleted={this.toggleCompleted}
         />
+        <button type="button" onClick={this.toggleModal}>
+          Открыть Модалку
+        </button>
+        {showModal && (
+          <Modal onClose={this.toggleModal}>
+            <h1>Привет это рендер модалки как children</h1>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+              mollit anim id est laborum
+            </p>
+
+            <button onClick={this.toggleModal}>Закрыть</button>
+          </Modal>
+        )}
+
+        <Clock />
       </>
     );
   }
