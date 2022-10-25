@@ -18,12 +18,13 @@ import { Filter } from "./components/Filter";
 
 export class App extends Component {
   state = {
-    todos: [
-      { id: "id-1", text: "Выучить основы реакт", completed: true },
-      { id: "id-2", text: "Разобраться с реакт роутер", completed: false },
-      { id: "id-3", text: "Пережить редакс", completed: false },
-      { id: "id-4", text: "Окончить курс", completed: false },
-    ],
+    todos: [],
+    // todos: [
+    //   { id: "id-1", text: "Выучить основы реакт", completed: false },
+    //   { id: "id-2", text: "Разобраться с реакт роутер", completed: false },
+    //   { id: "id-3", text: "Пережить редакс", completed: false },
+    //   { id: "id-4", text: "Окончить курс", completed: false },
+    // ],
 
     filter: "",
   };
@@ -76,6 +77,18 @@ export class App extends Component {
     const { todos } = this.state;
     return todos.reduce((acc, todo) => (todo.completed ? acc + 1 : acc), 0);
   };
+
+  componentDidMount() {
+    const todos = localStorage.getItem("todos");
+    const parsedTodos = JSON.parse(todos);
+    this.setState({ todos: parsedTodos });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.todos !== prevState.todos) {
+      localStorage.setItem("todos", JSON.stringify(this.state.todos));
+    }
+  }
 
   render() {
     const { todos } = this.state;
