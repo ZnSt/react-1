@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import shortid from "shortid";
+import tabs from "./assets/tabs.json";
 // import { Dropdown } from "./components/Dropdown";
 // import { Counter } from "./components/Counter";
 // import { ColorPicker } from "./components/ColorPicker";
@@ -10,7 +11,7 @@ import { TodoEditor } from "./components/TodoEditor";
 import { Filter } from "./components/Filter";
 import { Modal } from "./components/Modal";
 import { Clock } from "./components/Clock";
-
+import { Tabs } from "./components/Tabs";
 // const colorPickerOptions = [
 //   { label: "red", color: "#F44336" },
 //   { label: "green", color: "#4CAF50" },
@@ -129,6 +130,8 @@ export class App extends Component {
           onDeleteTodo={this.deleteTodo}
           onToggleCompleted={this.toggleCompleted}
         />
+
+        <Tabs items={tabs} />
         <button type="button" onClick={this.toggleModal}>
           Открыть Модалку
         </button>
