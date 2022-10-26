@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
 import shortid from "shortid";
-import tabs from "./assets/tabs.json";
+import { ReactComponent as IconAdd } from "./icons/add.svg";
+// import tabs from "./assets/tabs.json";
 // import { Dropdown } from "./components/Dropdown";
 // import { Counter } from "./components/Counter";
 // import { ColorPicker } from "./components/ColorPicker";
@@ -11,7 +12,9 @@ import { TodoEditor } from "./components/TodoEditor";
 import { Filter } from "./components/Filter";
 import { Modal } from "./components/Modal";
 import { Clock } from "./components/Clock";
-import { Tabs } from "./components/Tabs";
+// import { Tabs } from "./components/Tabs";
+import { IconButton } from "./components/IconButton";
+
 // const colorPickerOptions = [
 //   { label: "red", color: "#F44336" },
 //   { label: "green", color: "#4CAF50" },
@@ -75,6 +78,8 @@ export class App extends Component {
     this.setState((prevState) => ({
       todos: [todo, ...prevState.todos],
     }));
+
+    this.toggleModal();
   };
 
   deleteTodo = (todoId) => {
@@ -118,12 +123,13 @@ export class App extends Component {
         {/* return <Dropdown />; */}
 
         {/* return <ColorPicker options={colorPickerOptions} />; */}
+        <IconButton onClick={this.toggleModal} aria-label="Добавить todo"></IconButton>
+
         <div>
           <p>Общее кол-во: {totalTodoCount}</p>
           <p>Общее кол-во выполненых: {compeletedTodos}</p>
         </div>
         <Filter onChange={this.changeFilter} />
-        <TodoEditor onSubmit={this.addTodo} value={this.state.filter} />
 
         <ToDoList
           todos={visibleTodos}
@@ -131,25 +137,19 @@ export class App extends Component {
           onToggleCompleted={this.toggleCompleted}
         />
 
-        <Tabs items={tabs} />
+        {/* <Tabs items={tabs} /> */}
         <button type="button" onClick={this.toggleModal}>
           Открыть Модалку
         </button>
         {showModal && (
           <Modal onClose={this.toggleModal}>
-            <h1>Привет это рендер модалки как children</h1>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-              mollit anim id est laborum
-            </p>
+            <TodoEditor onSubmit={this.addTodo} value={this.state.filter} />
 
             <button onClick={this.toggleModal}>Закрыть</button>
           </Modal>
         )}
+
+        <IconAdd width="40" height="40" fill="red" />
 
         <Clock />
       </>
