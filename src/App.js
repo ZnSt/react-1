@@ -1,14 +1,24 @@
 import "./App.css";
-import paintings from "./painting.json";
-import PaintingList from "./components/PaintingList";
-import Sections from "./components/Sections";
+import { Component } from "react";
+import { ToastContainer } from "react-toastify";
+import { PokemonInfo } from "./components/PokemonInfo";
+import { PokemonForm } from "./components/PokemonForm";
 
-export default function App() {
-  return (
-    <div>
-      <Sections title="Топ недели">
-        <PaintingList items={paintings} />
-      </Sections>
-    </div>
-  );
+export class App extends Component {
+  state = {
+    pokemonName: "",
+  };
+
+  handleFormSubmit = (pokemonName) => {
+    this.setState({ pokemonName });
+  };
+  render() {
+    return (
+      <div>
+        <PokemonForm onSubmit={this.handleFormSubmit} />
+        <PokemonInfo pokemonName={this.state.pokemonName} />
+        <ToastContainer />
+      </div>
+    );
+  }
 }
