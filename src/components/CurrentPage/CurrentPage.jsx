@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export const CurrentPage = ({ current, total }) => {
   return (
     <>
@@ -6,4 +8,10 @@ export const CurrentPage = ({ current, total }) => {
       </p>
     </>
   );
+};
+
+CurrentPage.propTypes = {
+  total: PropTypes.arrayOf(PropTypes.shape({})),
+
+  current: PropTypes.number.isRequired,
 };

@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export const Publications = ({ currentItem }) => {
   return (
     <article>
@@ -5,4 +7,11 @@ export const Publications = ({ currentItem }) => {
       <p>{currentItem.text}</p>
     </article>
   );
+};
+
+Publications.propTypes = {
+  currentItem: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+  }),
 };
