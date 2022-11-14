@@ -1,37 +1,44 @@
-import { useState, useEffect } from "react";
+import { Component } from "react";
 
-export const App = () => {
-  const [page, setPage] = useState(1);
-  const [query, setQuery] = useState("");
-  const [items, setItems] = useState([]);
+export class App extends Component {
+  state = {
+    page: 1,
+    query: "",
+    items: [],
+  };
 
-  const handleSubmit = (event) => {
+  handleSubmit = (event) => {
     event.preventDefault();
-    setPage(1);
-    setQuery(event.target.elements.query.value);
-    setItems([]);
-
+    this.setState({
+      page: 1,
+      query: event.target.elements.query.value,
+      items: [],
+    });
     event.target.reset();
   };
 
-  const loadMore = () => {
-    setPage((prevPage) => prevPage + 1);
+  loadrMore = () => {
+    this.setState({
+      page: this.state.page + 1,
+    });
   };
 
-  useEffect(() => {
-    console.log(page);
-    console.log(query);
-    console.log("fetch data");
-  }, [page, query]);
+  componentDidUpdate(_, prevState) {
+    if (prevState.page !== this.state.page || this.state.query !== prevState.query) {
+      console.log("fetch data");
+    }
+  }
 
-  return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="query" />
-        <button type="submit">Search</button>
-      </form>
+  render() {
+    return (
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <input type="text" name="query" />
+          <button type="submit">Search</button>
+        </form>
 
-      <button onClick={loadMore}>Load More</button>
-    </>
-  );
-};
+        <button onClick={this.loadrMore}>Load More</button>
+      </div>
+    );
+  }
+}
