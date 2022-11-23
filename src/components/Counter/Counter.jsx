@@ -8,23 +8,23 @@ export const Counter = () => {
     setCounterA((prevState) => prevState + 1);
   };
 
-  const handleCounterBDecrement = () => {
+  const handleCounterBIncrement = () => {
     setCounterB((prevState) => prevState + 1);
   };
 
   useEffect(() => {
-    const totalClicks = counterA + counterB;
+    const totalClick = counterA + counterB;
 
-    document.title = `Всего кликнули ${totalClicks} раз`;
+    document.title = `Всего кликнули ${totalClick} раз`;
   }, [counterA, counterB]);
 
   return (
     <>
       <button type="button" onClick={handleCounterAIncrement}>
-        Кликнули Counter A {counterA} раз
+        Кликнули CouinterA {counterA} раз
       </button>
-      <button type="button" onClick={handleCounterBDecrement}>
-        Кликнули Counter B {counterB} раз
+      <button type="button" onClick={handleCounterBIncrement}>
+        Кликнули CouinterB {counterB} раз
       </button>
     </>
   );
