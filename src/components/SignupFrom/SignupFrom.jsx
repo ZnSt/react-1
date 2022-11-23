@@ -1,10 +1,8 @@
-import { useState, useEffect } from "react";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 export const SignupForm = () => {
-  const [email, setEmail] = useState(JSON.parse(window.localStorage.getItem("email")) ?? "");
-  const [password, setPassword] = useState(
-    JSON.parse(window.localStorage.getItem("password")) ?? ""
-  );
+  const [email, setEmail] = useLocalStorage("email", "");
+  const [password, setPassword] = useLocalStorage("password", "");
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -21,14 +19,6 @@ export const SignupForm = () => {
         return;
     }
   };
-
-  useEffect(() => {
-    window.localStorage.setItem("email", JSON.stringify(email));
-  }, [email]);
-
-  useEffect(() => {
-    window.localStorage.setItem("password", JSON.stringify(password));
-  }, [password]);
 
   return (
     <form>
