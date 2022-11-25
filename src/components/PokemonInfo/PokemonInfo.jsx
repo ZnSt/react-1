@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import pokemonAPI from "../../services/api";
+
+const Status = {
+  IDLE: "idle",
+  PENDING: "pending",
+  RESOLVED: "resolved",
+  REJECTED: "rejected",
+};
 export const PokemonInfo = ({ pokemonName }) => {
-  const Status = {
-    IDLE: "idle",
-    PENDING: "pending",
-    RESOLVED: "resolved",
-    REJECTED: "rejected",
-  };
   const [pokemon, setPokemon] = useState(null);
   const [error, setError] = useState(null);
   const [status, setStatus] = useState(Status.IDLE);
