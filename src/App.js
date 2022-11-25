@@ -5,6 +5,8 @@ import { ColorPicker } from "./components/ColorPicker";
 import { Counter } from "./components/Counter";
 import { Clock } from "./components/Clock";
 import { Pokemon } from "./components/Pokemon";
+import { SecondCounter } from "./components/SecondCounter";
+import { Friends } from "./components/Friends";
 export function App() {
   return (
     <div>
@@ -12,7 +14,9 @@ export function App() {
       {/* <ColorPicker /> */}
       {/* <Counter /> */}
       {/* <Clock /> */}
-      <Pokemon />
+      {/* <Pokemon /> */}
+      {/* <SecondCounter /> */}
+      <Friends />
       <ToastContainer />
     </div>
   );
