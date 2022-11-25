@@ -1,3 +1,5 @@
+import { ToastContainer } from "react-toastify";
+
 import { SignupForm } from "./components/SignupFrom";
 import { ColorPicker } from "./components/ColorPicker";
 import { Counter } from "./components/Counter";
@@ -11,6 +13,7 @@ export function App() {
       {/* <Counter /> */}
       {/* <Clock /> */}
       <Pokemon />
+      <ToastContainer />
     </div>
   );
 }

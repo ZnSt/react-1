@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const PokemonForm = ({ onSubmit }) => {
   const [pokemonName, setPokemonName] = useState("");
@@ -11,6 +13,7 @@ export const PokemonForm = ({ onSubmit }) => {
     event.preventDefault();
 
     if (pokemonName.trim() === "") {
+      toast("Enter pokemon name");
       return;
     }
 
@@ -19,13 +22,7 @@ export const PokemonForm = ({ onSubmit }) => {
   };
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="pokemonName"
-        value={pokemonName}
-        onChange={handleChangeName}
-        placeholder="Enter a pokemon name"
-      />
+      <input type="text" name="pokemonName" value={pokemonName} onChange={handleChangeName} />
       <button type="submit">Search</button>
     </form>
   );
